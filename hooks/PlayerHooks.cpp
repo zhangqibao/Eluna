@@ -89,6 +89,14 @@ bool Eluna::OnCommand(Player* player, const char* text)
 
             sElunaLoader->ReloadElunaForMap(mapId);
 
+            if (player)
+            {
+                if (mapId == RELOAD_ALL_STATES)
+                    player->PSendSysMessage("Eluna reloaded for all maps.");
+                else
+                    player->PSendSysMessage("Eluna reloaded for map %d.", mapId);
+            }
+
             return false;
         }
     }
