@@ -47,7 +47,7 @@ namespace LuaQuest
     {
         uint32 flag = E->CHECKVAL<uint32>(2);
 
-        E->Push(quest->HasFlag(flag));
+        E->Push(quest->HasFlag(static_cast<QuestFlags>(flag)));
         return 1;
     }
 
@@ -153,13 +153,27 @@ namespace LuaQuest
     /**
      * Returns the [Quest]'s type.
      *
-     * TODO: Document types available.
+     * Below are [QuestInfo]s off of 3.3.5a
+     *
+     * @table
+     * @columns [QuestInfo, ID, Comment]
+     * @values [QUEST_INFO_ELITE, 1, ""]
+     * @values [QUEST_INFO_LIFE, 21, ""]
+     * @values [QUEST_INFO_PVP, 41, ""]
+     * @values [QUEST_INFO_RAID, 62, ""]
+     * @values [QUEST_INFO_DUNGEON, 81, ""]
+     * @values [QUEST_INFO_WORLD_EVENT, 82, ""]
+     * @values [QUEST_INFO_LEGENDARY, 83, ""]
+     * @values [QUEST_INFO_ESCORT, 84, ""]
+     * @values [QUEST_INFO_HEROIC, 85, ""]
+     * @values [QUEST_INFO_RAID_10, 88, ""]
+     * @values [QUEST_INFO_RAID_25, 89, ""]
      *
      * @return uint32 type
      */
     int GetType(Eluna* E, Quest* quest)
     {
-        E->Push(quest->GetType());
+        E->Push(quest->GetQuestInfoID());
         return 1;
     }
 
@@ -173,7 +187,7 @@ namespace LuaQuest
         E->Push(quest->GetMaxLevel());
         return 1;
     }
-    
+
     ElunaRegister<Quest> QuestMethods[] =
     {
         // Getters

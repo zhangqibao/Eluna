@@ -18,6 +18,7 @@
 #else
 #include "Util.h"
 #endif
+
 #include <map>
 
 #if defined ELUNA_TRINITY || defined ELUNA_AZEROTHCORE
